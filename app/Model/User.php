@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -15,7 +15,16 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+            'first_name',
+            'last_name', 
+            'phone',
+            'user_name', 
+            'provider',
+            'provider_id',
+            'token', 'email',
+            'password',
+            'status',
+            'verified',
     ];
 
     /**
@@ -26,4 +35,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function user_details(){
+       return $this->hasMany(App\Model\UserDetails::class);
+    }
 }
