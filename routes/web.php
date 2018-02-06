@@ -11,6 +11,9 @@
 |
 */
 
+
+
+Route::resource('category','Admin\CategoryController');
 Route::get('/', function () {
     return view('welcome');
 });
