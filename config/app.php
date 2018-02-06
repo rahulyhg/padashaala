@@ -168,6 +168,8 @@ return [
          * Package Service Providers...
          */
 
+        Kurt\Repoist\RepoistServiceProvider::class,
+
         /*
          * Application Service Providers...
          */

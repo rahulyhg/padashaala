@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('/brand', 'Backend\BrandController');
+Route::get( '/brand/json', 'Backend\BrandController@getBrandsJson' )->name( 'brands.json' );

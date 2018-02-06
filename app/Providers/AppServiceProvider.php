@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use App\Repositories\Contracts\BrandRepository;
+use App\Repositories\Eloquent\EloquentBrandRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+       $this->app->singleton( BrandRepository::class, EloquentBrandRepository::class );
     }
 }

@@ -7,7 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class VendorAddressDetail extends Model
 {
     protected $fillable = [
-    	'name', 'email', 'showroom', 'phone', 'shop_name', 'address',
+    	'name', 
+    	'email', 
+    	'showroom', 
+    	'phone', 
+    	'shop_name', 
+    	'address',
     ];
 
     public function vendors()

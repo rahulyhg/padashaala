@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Vendor extends Model
 {
     protected $fillable = [
-    	'username', 'email', 'password',
+    	'username', 
+    	'email', 
+    	'password',
     ];
 
     public function vendor_address_details()
