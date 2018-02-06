@@ -22,8 +22,7 @@ class UserAddress extends Model
             'state',
     ];
 
-    public function User(){
+    public function user(){
     	return $this->belongsTo(App\Model\User::class);
-    }
     }
 }

@@ -2,8 +2,11 @@
 
 namespace App\Model;
 
-use Illuminate\Notifications\Notifiable;
+use App\Model\UserAddress;
+use App\Model\UserDetails;
+use App\Model\VendorDetails;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -21,7 +24,8 @@ class User extends Authenticatable
             'user_name', 
             'provider',
             'provider_id',
-            'token', 'email',
+            'token', 
+            'email',
             'password',
             'status',
             'verified',
@@ -36,7 +40,15 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function user_details(){
-       return $this->hasMany(App\Model\UserDetails::class);
+    public function userDetails(){
+       return $this->hasMany(UserDetails::class);
+    }
+
+    public function userAddress(){
+       return $this->hasMany(UserAddress::class);
+    }
+
+    public function vendorDeatils(){
+       return $this->hasMany(VendorDetails::class);
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Model;
 
-use App\Model\User;
+use App\Model\VendorDetails;
 use Illuminate\Database\Eloquent\Model;
 
-class UserDetails extends Model
+class VendorCategories extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -13,13 +13,11 @@ class UserDetails extends Model
      * @var array
      */
     protected $fillable = [
-        	'user_id',
-        	'gender',
-            'DOB', 
+        	'vendor_id',
+        	'categories',
     ];
 
-
-    public function user(){
-    	return $this->belongsTo(User::class);
+    public function documents(){
+    	return $this->belongsTo(VendorDetails::class);
     }
 }

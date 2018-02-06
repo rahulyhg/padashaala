@@ -2,10 +2,10 @@
 
 namespace App\Model;
 
-use App\Model\User;
+use App\Model\Product;
 use Illuminate\Database\Eloquent\Model;
 
-class UserDetails extends Model
+class ProductFaq extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -13,13 +13,12 @@ class UserDetails extends Model
      * @var array
      */
     protected $fillable = [
-        	'user_id',
-        	'gender',
-            'DOB', 
+        	'product_id',
+        	'question',
+            'answer',
     ];
 
-
-    public function user(){
-    	return $this->belongsTo(User::class);
+    public function product(){
+    	return $this->belongsTo(Product::class);
     }
 }
