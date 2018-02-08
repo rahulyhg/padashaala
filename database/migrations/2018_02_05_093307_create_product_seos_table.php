@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVendorsTable extends Migration
+class CreateProductSeosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateVendorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('vendors', function (Blueprint $table) {
+        Schema::create('product_seos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('username',50)->nullable();
-            $table->string('email',50)->unique()->nullable();
-            $table->string('password',15)->nullable();
+            $table->integer('product_id')->unsigned();
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->longText('meta_keyword')->nullable();
+            $table->longText('meta_description')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateVendorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vendors');
+        Schema::dropIfExists('product_seos');
     }
 }

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Brand')
 @section('content')
 
     <div class="modal fade" id="quickViewModal" tabindex="-1"></div>
@@ -12,8 +12,8 @@
 						<tr>
 							<th>SN</th>
 							<th>Name</th>
+                            <th>Company Name</th>
 							<th>Image</th>
-							<th>Company Name</th>
 							<th class="sorting-false">Action</th>
 						</tr>
 					</thead>
@@ -23,8 +23,8 @@
 						<tr>
 							<th>SN</th>
 							<th>Name</th>
+                            <th>Company Name</th>
 							<th>Image</th>
-							<th>Company Name</th>
 							<th class="sorting-false">Action</th>
 						</tr>
 					</tfoot>

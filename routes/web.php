@@ -22,3 +22,5 @@ Route::post('/brand/store', 'Backend\BrandController@store')->name('brand.store'
 Route::post('/brand/update', 'Backend\BrandController@updateBrand')->name('brands.update');
 Route::get( '/brandjson', 'Backend\BrandController@getBrandsJson' )->name( 'brands.json' );
 
+Route::get('/products', 'Backend\ProductController@index')->name('products.index');
+
