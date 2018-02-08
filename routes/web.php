@@ -16,5 +16,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::resource('user/add','UserController@store')->name('user.create');
+Route::get('user/delete/{id}','UserController@destroy')->name('user.delete');
+Route::get('user','UserController@index')->name('user.index');
+Route::get('user/json', 'UserController@getUserJson')->name('users.json');

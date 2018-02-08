@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Model\User;
 use Illuminate\Database\Eloquent\Model;
 
 class UserAddress extends Model
@@ -23,6 +24,6 @@ class UserAddress extends Model
     ];
 
     public function user(){
-    	return $this->belongsTo(App\Model\User::class);
+    	return $this->belongsTo(User::class);
     }
 }
