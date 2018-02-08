@@ -26,29 +26,23 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brandProducts = $this->brandRepository->all();
-        return view('brand.index', compact('brandProducts'));
+        return view('brand.index');
     }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        // 
-    }
-
+     *
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(BrandRequest $request)
+    public function store(Request $request)
     {
-       $this->brandRepository->create($request->all());
+       $this->brandRepository->store($request->all());
 
        // $brand = new Brand;
 
@@ -66,59 +60,27 @@ class BrandController extends Controller
         // return back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $brand = $this->brandRepository->findById($id);
-        return view('brand.index', compact('brand'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $this->brandRepository->update($request->all());
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function delete($id)
     {
         $this->brandRepository->delete($id);
         return redirect()->back()->with(['success', 'Brand has successfully deleted!']);
     }
 
-    public function getBrandsJson(Request $request)
+    public function getBrandsJson()
     {
-        
-        $brands = Brand::all();
-        
-        
+        $brands = $this->brandRepository->all();        
         return datatables( $brands )->toJson();
+    }
+
+    public function editBrand($id)
+    {
+        // $brands = $this->brandRepository->update($id);
+        $brands = $this->brandRepository->find($id);
+        return view('brand.edit', compact('brands'));
+    }
+
+    public function updateBrand(Request $request)
+    {
+        $this->brandRepository->update($request->id, $request->all());
     }
 }
