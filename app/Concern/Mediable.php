@@ -11,7 +11,7 @@ trait Mediable {
 	 * Get all of the resource's media.
 	 */
 	public function media() {
-		return $this->morphMany( Media::class, 'mediable' );
+		return $this->morphMany(Media::class, 'mediable');
 	}
 
 	/**

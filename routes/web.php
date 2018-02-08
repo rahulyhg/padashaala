@@ -17,7 +17,8 @@ Route::get('/', function () {
 
 Route::get( '/brands/delete/{id}', 'Backend\BrandController@delete' )->name( 'brands.delete' );
 Route::get( '/brands/edit/{id}', 'Backend\BrandController@editBrand' )->name( 'brands.edit' );
-Route::resource('/brand', 'Backend\BrandController');
+Route::get('/brand', 'Backend\BrandController@index')->name('brand.index');
+Route::post('/brand/store', 'Backend\BrandController@store')->name('brand.store');
 Route::post('/brand/update', 'Backend\BrandController@updateBrand')->name('brands.update');
 Route::get( '/brandjson', 'Backend\BrandController@getBrandsJson' )->name( 'brands.json' );
 

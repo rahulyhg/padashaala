@@ -19,8 +19,10 @@
 
       <div class="form-group">
         <label for="image">Image</label>
-        <input type="file" name="image" class="form-control" value="">
+        <input type="file" name="image" class="form-control" value="" id="image">
+        @if($brands->getImage())
         <img src="{{$brands->getImage()->smallUrl}}" alt="Image">
+        @endif
       </div>
 
       <div class="form-group">

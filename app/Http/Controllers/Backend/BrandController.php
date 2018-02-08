@@ -62,13 +62,16 @@ class BrandController extends Controller
 
     public function delete($id)
     {
-        $this->brandRepository->delete($id);
-        return redirect()->back()->with(['success', 'Brand has successfully deleted!']);
+        $this->brandRepository->deleteBrand($id);
     }
 
     public function getBrandsJson()
     {
-        $brands = $this->brandRepository->all();        
+        $brands = $this->brandRepository->all();  
+        foreach ($brands as $brand) {
+                  $image = null !== $brand->getImage()? $brand->getImage()->smallUrl: $brand->getDefaultImage()->smallUrl;
+                  $brand->image = $image;
+              }      
         return datatables( $brands )->toJson();
     }
 
@@ -81,6 +84,6 @@ class BrandController extends Controller
 
     public function updateBrand(Request $request)
     {
-        $this->brandRepository->update($request->id, $request->all());
+        $this->brandRepository->updateBrand($request->id, $request->all());
     }
 }

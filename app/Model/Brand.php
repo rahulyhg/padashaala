@@ -2,11 +2,13 @@
 
 namespace App\Model;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Concern\Mediable;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Model;
 
 class Brand extends Model
 {
+   use Sluggable, Mediable;
     protected $fillable = [
     	'name',
     	'company_name',
@@ -18,7 +20,7 @@ class Brand extends Model
     	return $this->hasMany(Product::class, 'product_id', 'id');
     }
 
-    use Sluggable;
+   
 
     /**
      * Return the sluggable configuration array for this model.

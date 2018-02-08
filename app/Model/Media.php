@@ -44,7 +44,6 @@ class Media extends Model
 		$media->path              = $dbPath;
 		$media->original_filename = $attributes->getClientOriginalName();
 		$media->mime_type         = $attributes->getMimeType();
-
 		$model->media()->save( $media );
 
 		return $media;

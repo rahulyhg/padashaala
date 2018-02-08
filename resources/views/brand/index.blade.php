@@ -12,7 +12,7 @@
 						<tr>
 							<th>SN</th>
 							<th>Name</th>
-							{{-- <th>Image</th> --}}
+							<th>Image</th>
 							<th>Company Name</th>
 							<th class="sorting-false">Action</th>
 						</tr>
@@ -23,7 +23,7 @@
 						<tr>
 							<th>SN</th>
 							<th>Name</th>
-							{{-- <th>Image</th> --}}
+							<th>Image</th>
 							<th>Company Name</th>
 							<th class="sorting-false">Action</th>
 						</tr>
@@ -60,11 +60,16 @@
 				{data: 'id', name: 'id'},
 	    		{data: 'name', name: 'name'},
 	    		{data: 'company_name', name: 'company_name'},
+                {data: 'image', 
+                orderable: false, 
+                render: function (data, type, row) {
+                    return '<img src="' + data + '" width="50">';
+                }
+            },
 	    		{
                         data: 'id',
                         orderable: false,
                         render: function (data, type, row) {
-                           
                             var actions = '';
                       		actions += "<button type='submit' class='btn btn-xs btn-danger btn-edit' data-id=" + row.id + ">Edit</button>";
                             actions += "<button type='submit' class='btn btn-xs btn-danger btn-delete' data-id=" + row.id + ">Delete</button>";
@@ -83,12 +88,13 @@
 <script>
 	$(document).on("click", ".btn-add", function (e) {
         e.preventDefault();
-        var brand = $("#brandSubmit").serialize();
-        var image = new FormData();
-        // image.append('name', name);
-        image.append('image', $('input[type=file]')[0].files[0]);
-        // image.append('company_name', company_name);
-        console.log(image);
+            var params   = $('#brandSubmit').serializeArray();
+            var formData = new FormData($('#brandSubmit')[0]);
+                formData.append('image', $('input[type=file]')[0].files[0]);
+
+            $.each(params, function(i, val) {
+                formData.append(val.name, val.value);
+            });
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -100,7 +106,8 @@
                 url: "{{ route('brand.store')  }}",
                 contentType: false,
                 processData: false,
-                data: {brand, image},
+                cache: false,
+                data: formData,
                 beforeSend: function (data) {
                 },
                 success: function (data) {
@@ -125,29 +132,14 @@
 <script>
 	$(document).on("click", ".btn-delete", function (e) {
         e.preventDefault();
-       
+       if (!confirm('Are you sure you want to delete?')) {
+                return false;
+            }
          var $this = $(this);
        
         var id = $this.attr('data-id');
      	var tempDeleteUrl = "{{ route('brands.delete', ':id') }}";                               tempDeleteUrl = tempDeleteUrl.replace(':id', id);        
          
-                 	 
- swal({
-            title: 'dsds',
-            html: 'dcdc',
-            type: 'warning',
-            showConfirmButton: true,
-            showCancelButton: true,
-            afterComfirm: (confirm)
-          },
-          function(confirm){   
-      
-         console.log('slkfjkskj');
-      
-
-     
-      })
-        .catch(swal.noop);
     
          $.ajaxSetup({
                 headers: {
@@ -200,6 +192,15 @@
 <script>
 	$(document).on("click", ".btn-update", function (e) {
         e.preventDefault();
+        var params   = $('#update').serializeArray();
+            var formData = new FormData($('#update')[0]);
+            if($('#image').val()) {
+                formData.append('image', $('input[type=file]')[0].files[0]);
+            }
+
+            $.each(params, function(i, val) {
+                formData.append(val.name, val.value);
+            });
                     $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -209,7 +210,10 @@
             $.ajax({
                 type: "POST",
                 url: "{{ route('brands.update') }}",
-                data: $("#update").serialize(),
+                contentType: false,
+                processData: false,
+                cache: false,
+                data: formData,
                 beforeSend: function (data) {
                 },
                 success: function (data) {
