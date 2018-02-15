@@ -13,12 +13,12 @@ class ProductSpecifaction extends Model
      * @var array
      */
     protected $fillable = [
-        	'product_id',
-        	'title',
-        	'description',
+            'product_id',
+            'title',
+            'description',
     ];
 
     public function product(){
-    	return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class);
     }
 }

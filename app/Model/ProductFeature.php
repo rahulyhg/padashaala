@@ -13,11 +13,11 @@ class ProductFeature extends Model
      * @var array
      */
     protected $fillable = [
-        	'product_id',
-        	'feature',
+            'product_id',
+            'feature',
     ];
 
     public function product(){
-    	return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class);
     }
 }

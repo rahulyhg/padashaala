@@ -13,12 +13,12 @@ class ProductFaq extends Model
      * @var array
      */
     protected $fillable = [
-        	'product_id',
-        	'question',
+            'product_id',
+            'question',
             'answer',
     ];
 
     public function product(){
-    	return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class);
     }
 }

@@ -41,7 +41,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
         $this->userRepository->store($request->all());
     }
 
@@ -64,7 +63,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('user-edit', compact('id')); 
     }
 
     /**
@@ -76,7 +75,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->userRepository->update($request->all());
     }
 
     /**
@@ -85,9 +84,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-       
         $this->userRepository->delete($id);
     }
     public function getUserJson(){

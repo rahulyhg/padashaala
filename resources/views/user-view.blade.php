@@ -52,8 +52,13 @@
                         orderable: false,
                         render: function (data, type, row) {
                            
+                            
+                        var tempEditUrl = "{{ route('user.edit', ':id') }}"; tempEditUrl = tempEditUrl.replace(':id', data);
+
                             var actions = '';
                       
+                            
+                            actions += "<a href="+ tempEditUrl +" class='btn btn-xs btn-danger btn-edit' data-id=" + row.id + ">Edit</a>";
                             actions += "<button type='submit' class='btn btn-xs btn-danger btn-delete' data-id=" + row.id + ">Delete</button>";
 
                             return actions;
@@ -69,18 +74,20 @@
 <script>
 	$(document).on("click", ".btn-delete", function (e) {
         e.preventDefault();
-          var $this = $(this);
+       if (!confirm('Are you sure you want to delete?')) {
+                return false;
+            }
+         var $this = $(this);
+       
         var id = $this.attr('data-id');
-        console.log(id);
-     var tempDeleteUrl = "{{ route('user.delete', ':id') }}"; 
-      tempDeleteUrl = tempDeleteUrl.replace(':id', id);
-
+     	var tempDeleteUrl = "{{ route('user.delete', ':id') }}";                               tempDeleteUrl = tempDeleteUrl.replace(':id', id);        
+         
+    
          $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-
             $.ajax({
                 type: "GET",
                 url: tempDeleteUrl,
@@ -89,19 +96,16 @@
                 },
                 success: function (data) {
                     
-
+					// $('#myTable').DataTable().ajax.reload();
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     
                 },
                 complete: function () {
                 	$('#usertable').DataTable().ajax.reload();
-
-
                 }
             });
         
-
     });
 </script>
 </body>

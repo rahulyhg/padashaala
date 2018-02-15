@@ -25,6 +25,13 @@ class EloquentUserRepository extends AbstractRepository implements UserRepositor
     		'DOB' => $attributes['DOB'],
     		]);
     }
+    public function userupdate( $id, array $attributes ) {
+        $user = $this->model->update($attributes);
+        $user->userDetails()->update([
+            'gender' => $attributes['gender'],
+            'DOB' => $attributes['DOB'],
+            ]);
+    }
 
     public function all(){
         return $this->model->all();

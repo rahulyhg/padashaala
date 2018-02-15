@@ -14,12 +14,12 @@ class ProductImage extends Model
      * @var array
      */
     protected $fillable = [
-        	'product_id',
-        	'image',
-        	'main_image',
+            'product_id',
+            'image',
+            'main_image',
     ];
 
     public function product(){
-    	return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class);
     }
 }

@@ -14,12 +14,12 @@ class ProductSeo extends Model
      * @var array
      */
     protected $fillable = [
-        	'product_id',
-        	'meta_keyword',
-        	'meta_description',
+            'product_id',
+            'meta_keyword',
+            'meta_description',
     ];
 
     public function product(){
-    	return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class);
     }
 }
