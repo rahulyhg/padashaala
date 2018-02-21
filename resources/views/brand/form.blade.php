@@ -4,7 +4,7 @@
 			{{csrf_field()}}
 			<div class="form-group">
 				<label for="name">Name</label>
-				<input type="text" name="name" class="form-control">
+				<input type="text" name="name" class="form-control" placeholder="Enter Name" required>
 			</div>
 
 			<div class="form-group">
@@ -14,7 +14,7 @@
 
 			<div class="form-group">
 				<label for="company_name">Company Name</label>
-				<input type="text" name="company_name" class="form-control" value="">
+				<input type="text" name="company_name" class="form-control" placeholder="Enter Company Name" value="">
 			</div>
 
 			<button type="submit" name="submit" class="btn-add">Add Brand</button>

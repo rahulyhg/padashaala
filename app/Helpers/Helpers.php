@@ -1,7 +1,7 @@
 <?php
 
 use App\Category;
-use App\Configuration;
+use App\Model\Configuration;
 use App\Helpers\Image\LocalImageFile;
 use App\Product;
 use Carbon\Carbon;

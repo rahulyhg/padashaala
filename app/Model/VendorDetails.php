@@ -3,7 +3,7 @@
 namespace App\Model;
 
 use App\Model\ProductFeature;
-use App\Model\User;
+use App\User;
 use App\Model\VendorDocument;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,6 +17,7 @@ class VendorDetails extends Model
      */
     protected $fillable = [
         	'user_id',
+            'name',
         	'description',
         	'type',
         	'pan_number',

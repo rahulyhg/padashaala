@@ -3,7 +3,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit Brand</h5>
+        <h3 class="modal-title text-center" id="exampleModalLabel">Edit Brand</h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -21,7 +21,7 @@
         <label for="image">Image</label>
         <input type="file" name="image" class="form-control" value="" id="image">
         @if($brands->getImage())
-        <img src="{{$brands->getImage()->smallUrl}}" alt="Image">
+        <img src="{{$brands->getImage()->smallUrl}}" alt="Image" style="width:50%;height:auto;">
         @endif
       </div>
 

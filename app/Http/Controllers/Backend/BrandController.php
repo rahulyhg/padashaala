@@ -40,24 +40,9 @@ class BrandController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BrandRequest $request)
     {
        $this->brandRepository->store($request->all());
-
-       // $brand = new Brand;
-
-       //  $image = $request->file('image');
-       //  $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
-       //  $destinationPath = public_path('/uploads');
-       //  $image->move($destinationPath, $input['imagename']);
-
-
-        // $this->image->add($input);
-
-        // $brand->image = $input;
-        // $brand->save();
-
-        // return back();
     }
 
     public function delete($id)
@@ -82,7 +67,7 @@ class BrandController extends Controller
         return view('brand.edit', compact('brands'));
     }
 
-    public function updateBrand(Request $request)
+    public function updateBrand(BrandRequest $request)
     {
         $this->brandRepository->updateBrand($request->id, $request->all());
     }

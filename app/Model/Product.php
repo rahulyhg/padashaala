@@ -8,6 +8,7 @@ use App\Model\ProductFeature;
 use App\Model\ProductImage;
 use App\Model\ProductSeo;
 use App\Model\ProductSpecifaction;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -20,7 +21,9 @@ class Product extends Model
     protected $fillable = [
         	'product_name',
         	'product_price',
-            'discount_percentage', 
+            'discount_percentage',
+            'stock',
+            'stock_qty', 
     ];
 
     public function features(){
@@ -39,11 +42,15 @@ class Product extends Model
     	return $this->hasMany(ProductSpecifaction::class);
     }
 
-    public function additonials(){
+    public function additionals(){
         return $this->hasMany(ProductAdditional::class);
     }
 
     public function images(){
     	return $this->hasMany(ProductImage::class);
+    }
+
+    public function users() {
+        return $this->belongsTo(User::class);
     }
 }

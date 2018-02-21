@@ -36,7 +36,7 @@ trait Mediable {
 
 	public function getDefaultImage( $defaultPath = null ) {
 		if ( $defaultPath == null ) {
-			$defaultPath = "/img/default-product.jpg";
+			$defaultPath = "/img/default.png";
 		}
 
 		return new LocalImageFile( $defaultPath );

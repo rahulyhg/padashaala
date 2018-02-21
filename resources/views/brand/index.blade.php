@@ -2,11 +2,13 @@
 @section('title', 'Brand')
 @section('content')
 
+    <section>
     <div class="modal fade" id="quickViewModal" tabindex="-1"></div>
 
-	<div class="container">
 		<div class="row">
-			<div class="col-md-8">
+            <h3>Brands</h3>
+            @include('brand.form')
+			<div class="col-md-8 content__box content__box--shadow">
 				<table id="myTable" class="table table-striped table-hover">
 					<thead>
 						<tr>
@@ -30,9 +32,8 @@
 					</tfoot>
 				</table>
 			</div>
-			@include('brand.form')
 		</div>
-	</div>
+    </section>
 
 	@endsection
 
@@ -47,7 +48,6 @@
             type: type,
             showConfirmButton: false,
             timer: 3000,
-            showCancelButton: true
         }).catch(swal.noop);
     }
 
@@ -57,27 +57,31 @@
 			processing: true,
             serverSide: true,
 			columns: [
-				{data: 'id', name: 'id'},
+				{ 
+                    "data": "id",
+                   render: function (data, type, row, meta) {
+                       return meta.row + meta.settings._iDisplayStart + 1;
+                   }
+                },
 	    		{data: 'name', name: 'name'},
 	    		{data: 'company_name', name: 'company_name'},
                 {data: 'image', 
-                orderable: false, 
-                render: function (data, type, row) {
-                    return '<img src="' + data + '" width="50">';
-                }
-            },
-	    		{
-                        data: 'id',
-                        orderable: false,
-                        render: function (data, type, row) {
-                            var actions = '';
-                      		actions += "<button type='submit' class='btn btn-xs btn-danger btn-edit' data-id=" + row.id + ">Edit</button>";
-                            actions += "<button type='submit' class='btn btn-xs btn-danger btn-delete' data-id=" + row.id + ">Delete</button>";
-
-                            return actions;
-                        }
+                    orderable: false, 
+                    render: function (data, type, row) {
+                        return '<img src="' + data + '" style="width:50%;height:auto;">';
                     }
-				
+                },
+		        {
+                    data: 'id',
+                    orderable: false,
+                    render: function (data, type, row) {
+                        var actions = '';
+                  		actions += "<button type='submit' class='btn btn-xs btn-default btn-edit' style='margin-right:5px' data-id=" + row.id + "><span class='lnr lnr-pencil'></span></button>";
+                        actions += "<button type='submit' class='btn btn-xs btn-default btn-delete' data-id=" + row.id + "><span class='lnr lnr-trash'></span></button>";
+
+                        return actions;
+                    }
+                }		
     		],
 			ajax: '{{route('brands.json')}}'
 
@@ -112,8 +116,6 @@
                 },
                 success: function (data) {
                         sweetAlert('success', 'Success');
-                    
-
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     
@@ -121,12 +123,8 @@
                 complete: function () {
                 	 $("#brandSubmit")[0].reset(),
                 	$('#myTable').DataTable().ajax.reload();
-
-
                 }
             });
-        
-
     });
 </script>
 <script>
@@ -155,16 +153,12 @@
                 },
                 success: function (data) {
                     
-					// $('#myTable').DataTable().ajax.reload();
-
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     
                 },
                 complete: function () {
                 	$('#myTable').DataTable().ajax.reload();
-
-
                 }
             });
         
@@ -184,8 +178,6 @@
             $modal.modal({show: true});
 
          });
-        
-
     });
 </script>
 
@@ -223,14 +215,9 @@
                     
                 },
                 complete: function () {
-
                 	$('#myTable').DataTable().ajax.reload();
-
-
                 }
             });
-        
-
     });
 </script>
 

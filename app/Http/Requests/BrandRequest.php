@@ -28,11 +28,5 @@ class BrandRequest extends FormRequest
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'company_name' => 'required|min:2|max:20'
         ];
-
-        // $image = $request->file('image');
-        // $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
-        // $destinationPath = public_path('/uploads');
-        // $image->move($destinationPath, $input['imagename']);
-        // $this->postImage->add($input);
     }
 }
